@@ -15,10 +15,19 @@
     <description>expense-tracker-cli</description>
     <url/>
     <licenses>
-        <license/>
+        <license>
+            <name>MIT Licence</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>Sukrut k Pasumarthi</name>
+            <roles>
+                <role>Application Architect</role>
+            </roles>
+
+        </developer>
     </developers>
     <scm>
         <connection/>
@@ -28,8 +37,11 @@
     </scm>
     <properties>
         <java.version>21</java.version>
+        <spring-boot.version>3.4.3</spring-boot.version>
         <spring-shell.version>3.4.0</spring-shell.version>
+        <jackson.version>2.15.3</jackson.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,6 +50,18 @@
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.3</version>
         </dependency>
 
         <dependency>
@@ -50,7 +74,14 @@
             <artifactId>spring-shell-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -66,12 +97,14 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <version>0.9.28</version>
             </plugin>
         </plugins>
     </build>
