@@ -8,3 +8,36 @@
 1741977345588:add
 1741977353807:add --description "sfefe"
 1741977358631:help
+1742217984703:add help
+1742217988733:add --help
+1742218013378:add "tesla" "10"
+1742218208568:add --help
+1742219002464:add "sed" 12
+1742219056225:add "we" 12
+1742219168520:add "ee" 20
+1742219205377:add "23" 234
+1742219239523:add "dsd" 2
+1742219284378:add "dFE" 12
+1742219492742:add "23" 2
+1742219598070:add "33" 383
+1742219619003:add --description "243232" --amount 32
+1742222200139:list
+1742223309000:add --description "wlamart" --amount 89
+1742223319080:list
+1742223496673:add --description "DMV" 42.95
+1742223515535:add --description "DMV" --amount 49.22
+1742223522043:list
+1742224928046:update --id 0 --description "walmart"
+1742224951168:update --id 0 --description "walmart" --amount 89
+1742224954922:list
+1742225201173:add --description "giant eagle" --amount 34
+1742225227425:list
+1742225242450:add --description "walmart" --amount 99
+1742225248356:list
+1742225330666:update --help
+1742225537793:update --id 0 --description "walmart" --amount 92
+1742225540091:list
+1742225570305:add --description "new expense" --amount 33
+1742225579648:list
+1742225606220:update --id 1 --amount 35 --description "expense"
+1742225608500:list

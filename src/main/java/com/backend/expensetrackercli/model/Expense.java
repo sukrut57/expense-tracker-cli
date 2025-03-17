@@ -3,7 +3,7 @@ package com.backend.expensetrackercli.model;
 import java.time.LocalDateTime;
 
 public class Expense {
-
+    private static Long counter = 0L;
     private Long id;
     private String description;
     private Double amount;
@@ -71,8 +71,8 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, String description, Double amount, Category category, LocalDateTime expenseDate, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public Expense(String description, Double amount, Category category, LocalDateTime expenseDate, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = counter++;
         this.description = description;
         this.amount = amount;
         this.category = category;
