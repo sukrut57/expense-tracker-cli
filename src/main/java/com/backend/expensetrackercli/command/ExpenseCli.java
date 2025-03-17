@@ -67,19 +67,6 @@ public class ExpenseCli {
         }
     }
 
-    @ShellMethod(key="update", value="Update an expense")
-    public String updateExpense(@ShellOption long id, @ShellOption String description, @ShellOption double amount){
-        try{
-            if(description.isEmpty() || amount == 0){
-                return "Description and amount cannot be empty";
-            }
-            expenseService.updateExpense(id, description, amount);
-            return "Expense updated successfully";
-        }catch (Exception e){
-            return "Unable to update expense";
-        }
-    }
-
     @ShellMethod(key = "summary", value = "Get summary of expenses")
     public String getSummary(){
         try{
@@ -102,15 +89,29 @@ public class ExpenseCli {
         }
     }
 
-    @ShellMethod(key="delete", value="Delete an expense")
-        public String deleteExpense(@ShellOption long id){
-            try{
-                expenseService.deleteExpense(id);
-                return "Expense deleted successfully";
-            }catch (Exception e){
-                return "Unable to delete expense";
+    @ShellMethod(key="update", value="Update an expense")
+    public String updateExpense(@ShellOption long id, @ShellOption String description, @ShellOption double amount){
+        try{
+            if(description.isEmpty() || amount == 0){
+                return "Description and amount cannot be empty";
             }
+            expenseService.updateExpense(id, description, amount);
+            expenseService.updateExpense(id, description, amount);
+            return "Expense updated successfully";
+        }catch (Exception e){
+            return "Unable to update expense";
         }
+    }
+
+    @ShellMethod(key="delete", value="Delete an expense")
+    public String deleteExpense(@ShellOption long id){
+        try{
+            expenseService.deleteExpense(id);
+            return "Expense deleted successfully";
+        }catch (Exception e){
+            return "Unable to delete expense";
+        }
+    }
 
     private List<String> printExpenses(List<Expense> expenses){
         List<String> expenseList = new ArrayList<>();

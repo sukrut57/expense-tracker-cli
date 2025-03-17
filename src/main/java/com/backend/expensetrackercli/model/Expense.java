@@ -11,6 +11,16 @@ public class Expense {
     private LocalDateTime expenseDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private long budgetId;
+
+    public long getBudgetId() {
+        return budgetId;
+    }
+
+    public void setBudgetId(long budgetId) {
+        this.budgetId = budgetId;
+    }
+
 
     public Long getId() {
         return id;
@@ -71,7 +81,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String description, Double amount, Category category, LocalDateTime expenseDate, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Expense(String description, Double amount, Category category, LocalDateTime expenseDate, LocalDateTime createdAt, LocalDateTime updatedAt, long budgetId) {
         this.id = counter++;
         this.description = description;
         this.amount = amount;
@@ -79,6 +89,7 @@ public class Expense {
         this.expenseDate = expenseDate;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.budgetId = budgetId;
     }
 
 

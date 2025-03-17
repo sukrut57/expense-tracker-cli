@@ -1,5 +1,6 @@
 package com.backend.expensetrackercli.service;
 
+import com.backend.expensetrackercli.model.Budget;
 import com.backend.expensetrackercli.model.Category;
 import com.backend.expensetrackercli.model.Expense;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,21 @@ import static java.lang.System.out;
 public class ExpenseService {
 
     private final FileService fileService;
+    private final BudgetService budgetService;
 
-    public ExpenseService(FileService fileService) {
+    public ExpenseService(FileService fileService, BudgetService budgetService) {
         this.fileService = fileService;
+        this.budgetService = budgetService;
     }
 
     public void addExpense(String description, double amount, String category) throws IOException{
+        Budget currentMonthBudget = fileService.retrieveBudgetByMonth(LocalDateTime.now().getMonth().toString());
         LocalDateTime expenseDate = LocalDateTime.now();
-        Expense expense = new Expense(description, amount, Category.valueOf(category), expenseDate, expenseDate, expenseDate);
+        Expense expense = new Expense(description, amount, Category.valueOf(category), expenseDate, expenseDate, expenseDate, currentMonthBudget.getBudgetId());
         fileService.saveExpense(expense);
+
+        //update the budget for the current month after adding the expense
+        budgetService.calculateRemainingBudget(expenseDate.getMonth().toString(), amount, "subtract");
     }
 
     public List<Expense> getAllExpenses() throws IOException {
@@ -31,18 +38,26 @@ public class ExpenseService {
 
     public void updateExpense(long id, String description, double amount) throws IOException {
         List<Expense> expenseList = fileService.retrieveExpenses();
+        double difference = 0;
         Expense expense =expenseList.stream().filter(exp -> exp.getId() == id).findFirst().orElse(null);
         if(expense == null){
             throw new RuntimeException("Expense not found");
         }
+        difference = expense.getAmount() - amount;
         expense.setDescription(description);
         expense.setAmount(amount);
         expense.setUpdatedAt(LocalDateTime.now());
         fileService.updateExpense(expense);
+
+        //update the budget for the current month after adding the expense
+        budgetService.calculateRemainingBudget(expense.getExpenseDate().getMonth().toString(), difference, "add");
+
     }
 
     public void deleteExpense(long id) throws IOException {
-        fileService.deleteExpense(id);
+        Expense expense = fileService.deleteExpense(id);
+        //update the budget for the current month after adding the expense
+        budgetService.calculateRemainingBudget(expense.getExpenseDate().getMonth().toString(), expense.getAmount(), "add");
     }
 
     public double getSummary() throws IOException {
@@ -64,4 +79,6 @@ public class ExpenseService {
         }
         return monthlySummary;
     }
+
+
 }
