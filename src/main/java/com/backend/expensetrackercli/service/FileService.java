@@ -61,4 +61,14 @@ public class FileService {
             objectMapper.writeValue(fileWriter, expenseList);
         }
     }
+
+    public void deleteExpense(long id) throws IOException {
+        List<Expense> expenses = retrieveExpenses();
+        Expense expense = expenses.stream().filter(exp -> exp.getId() == id).findFirst()
+                .orElseThrow(() -> new RuntimeException("Expense not found"));
+        expenses.remove(expense);
+        try(FileWriter fileWriter = new FileWriter(FILE_PATH + FILE_NAME)){
+            objectMapper.writeValue(fileWriter, expenses);
+        }
+    }
 }

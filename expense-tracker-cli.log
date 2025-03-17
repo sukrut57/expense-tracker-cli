@@ -41,3 +41,38 @@
 1742225579648:list
 1742225606220:update --id 1 --amount 35 --description "expense"
 1742225608500:list
+1742230280669:add --description "gas" --amount 23.433
+1742230291032:11
+1742230301487:list
+1742230446356:add --description "gas" --amount 24.2
+1742230461447:list
+1742230525189:update --id 2 --description "gas" --amount 23
+1742230527162:list
+1742230678978:delete --id 2
+1742230681592:list
+1742230691651:delete 23
+1742230699414:delete --id 11
+1742230704043:update 112
+1742230759115:add
+1742230770270:add --description --amount
+1742230784428:add --descrption "" --amount
+1742230798007:add --description "" --amount
+1742230811556:add --descrption "23" --amount 3
+1742230815115:add
+1742230824177:add --description "e" --amount 2
+1742230841723:add --description "" --amount 0
+1742230853487:add add --descrption " " --amount
+1742230862660:add --description " " --amount 0
+1742232397999:list
+1742232401681:summary
+1742232635645:monthly-summary
+1742232652538:monthly-summary --march
+1742232662636:monthly-summary --month 3
+1742232674826:monthly-summary --month "march"
+1742232680814:list
+1742232820861:monthly-summary --month "march"
+1742232890387:monthly-expense
+1742232901422:monthly-expense --month "march"
+1742232924792:monthly-summary --month "march"
+1742233026635:monthly-summary
+1742233036761:monthly-summary --month "march"
