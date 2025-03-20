@@ -75,10 +75,28 @@ public class FileService {
     }
 
     public void saveBudget(Budget budget) throws IOException{
+        List<Budget> budgetList = retrieveBudgets();
+
+        if(budgetList.stream().anyMatch(budget1 -> budget1.getMonth().equalsIgnoreCase(budget.getMonth()))){
+            throw new RuntimeException("Budget for the month already exists");
+        }
+        budgetList.add(budget);
         new File(FILE_PATH).mkdirs(); // Ensure directory exists
         try(FileWriter fileWriter = new FileWriter(FILE_PATH + BUDGET_FILE_NAME)){
-            objectMapper.writeValue(fileWriter,budget);
+            objectMapper.writeValue(fileWriter,budgetList);
         }
+    }
+
+    public List<Budget> retrieveBudgets() throws IOException{
+        File file = new File(FILE_PATH + BUDGET_FILE_NAME);
+        if(!file.exists() || file.length() ==0){
+            return new ArrayList<>();
+        }
+        return objectMapper.readValue
+                (Files.newBufferedReader(
+                        Paths.get(FILE_PATH + BUDGET_FILE_NAME)),
+                        new TypeReference<List<Budget>>() {
+                });
     }
 
     public Budget retrieveBudgetByMonth(String month) throws IOException{
@@ -103,11 +121,7 @@ public class FileService {
                 });
 
         budgetList.removeIf(budget1 -> budget1.getMonth().equalsIgnoreCase(budget.getMonth()));
-        Budget budgetByMonth = retrieveBudgetByMonth(budget.getMonth());
-        budgetByMonth.setMonthlyBudget(budget.getMonthlyBudget());
-        budgetByMonth.setRemainingBudget(budget.getRemainingBudget());
-        budgetByMonth.setUpdatedAt(budget.getUpdatedAt());
-        budgetList.add(budgetByMonth);
+        budgetList.add(budget);
 
         try(FileWriter fileWriter = new FileWriter(FILE_PATH + BUDGET_FILE_NAME)){
             objectMapper.writeValue(fileWriter, budgetList);

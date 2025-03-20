@@ -38,12 +38,12 @@ public class ExpenseService {
 
     public void updateExpense(long id, String description, double amount) throws IOException {
         List<Expense> expenseList = fileService.retrieveExpenses();
-        double difference = 0;
         Expense expense =expenseList.stream().filter(exp -> exp.getId() == id).findFirst().orElse(null);
         if(expense == null){
             throw new RuntimeException("Expense not found");
         }
-        difference = expense.getAmount() - amount;
+
+        double difference = expense.getAmount() - amount;
         expense.setDescription(description);
         expense.setAmount(amount);
         expense.setUpdatedAt(LocalDateTime.now());

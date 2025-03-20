@@ -24,4 +24,15 @@ public class BudgetCli {
         }
     }
 
+    @ShellMethod(key="set-budget", value="Set budget for the month")
+    public String createBudget(double amount){
+        try{
+            budgetService.createBudget(amount);
+            return "Budget set successfully";
+        }
+        catch (Exception e){
+            return "Unable to set budget";
+        }
+    }
+
 }

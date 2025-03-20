@@ -41,8 +41,10 @@ public class BudgetService {
         return currentMonthBudget.getRemainingBudget();
     }
 
-    public double createBudget() throws IOException{
-         return 0;
+    public void createBudget(double amount) throws IOException{
+        String month = LocalDateTime.now().getMonth().toString();
+        Budget budget = new Budget(amount,amount, LocalDateTime.now(), LocalDateTime.now(), month);
+        fileService.saveBudget(budget);
 
     }
 }
