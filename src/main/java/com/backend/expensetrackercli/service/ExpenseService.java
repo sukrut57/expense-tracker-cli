@@ -81,4 +81,17 @@ public class ExpenseService {
     }
 
 
+    public double getCategorySummary(String category) throws IOException {
+        List<Expense> expenses = fileService.retrieveExpenses();
+        List<Expense> categoryExpenses = expenses.stream().filter(expense -> expense.getCategory().toString().equalsIgnoreCase(category)).toList();
+        double total = 0;
+        if(categoryExpenses.isEmpty()){
+            out.println("No expenses found for the category");
+            return total;
+        }
+        for(Expense expense:categoryExpenses){
+            total += expense.getAmount();
+        }
+        return total;
+    }
 }

@@ -132,3 +132,10 @@
 1742568233732:update --id 0 --description "rent" --amount 475
 1742568235272:list
 1742568241060:remaining-budget
+1742569364001:category-summary
+1742569376185:category-summary --MISC
+1742569389110:category-summary --category "MISC"
+1742569397913:>category-summary --category "RENT"
+1742569436997:>category-summary --category "MISC"
+1742569448244:category-summary --category "MISC"
+1742569456149:category-summary --category "RENT"

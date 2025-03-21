@@ -113,6 +113,18 @@ public class ExpenseCli {
         }
     }
 
+    @ShellMethod(key="category-summary", value="Get summary of expenses by category")
+    public String getCategorySummary(@ShellOption String category){
+        try{
+            double summary = expenseService.getCategorySummary(category);
+            return "Total expenses for " + category + " : " + summary;
+
+        }
+        catch (Exception e){
+            return "Unable to get category summary";
+        }
+    }
+
     private List<String> printExpenses(List<Expense> expenses){
         List<String> expenseList = new ArrayList<>();
         expenses.forEach(expense ->
