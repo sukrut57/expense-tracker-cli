@@ -76,3 +76,59 @@
 1742232924792:monthly-summary --month "march"
 1742233026635:monthly-summary
 1742233036761:monthly-summary --month "march"
+1742565507103:remaining-budget
+1742565525494:set-budget 1000
+1742565532053:remaining-budget
+1742565649916:add --description "rent" --amount 500
+1742565668369:list
+1742565681982:remaining-budget
+1742565713115:summary
+1742565773265:remaining-budget
+1742565777541:list
+1742565782114:summary
+1742566424168:list
+1742566426630:summary
+1742566443321:add --description "rent" --amount 500
+1742566523903:set-budget 1000
+1742566532524:remaining-budget
+1742566535034:list
+1742566559256:summary
+1742566580640:add --description "rent" --amount 500
+1742566585534:list
+1742566591184:remaining-budget
+1742567086260:add --description "internet" --amount 45
+1742567090692:list
+1742567093218:summary
+1742567106149:remaining-budget
+1742567129363:monthly-summary MARCH
+1742567136325:monthy-summary march
+1742567151452:monthly-summary --month "march"
+1742567370630:update --id 2 --description "internet" --amount 50
+1742567372803:list
+1742567379655:remaining-budget
+1742567396094:monthly-summary
+1742567400478:summary
+1742567411818:delete --id 2
+1742567413909:list
+1742567417298:summary
+1742567424995:remaining-budget
+1742567720506:add --description "laptop" --amount 510
+1742567731063:remaining-budget
+1742567742343:summary
+1742567770087:update --id 2 --description "update laptop" --amount 472.89
+1742567781075:list
+1742567786344:update --id 3 --description "update laptop" --amount 472.89
+1742567788347:list
+1742567794939:remaining-budget
+1742568050408:update --id 3 --description "update laptop" --amount 470.1
+1742568056465:remaining-budget
+1742568072854:summary
+1742568129231:remaining-budget
+1742568171977:set-budget 1000
+1742568178522:remaining-budget
+1742568200353:add --description "rent" --amount 500
+1742568203743:list
+1742568210021:remaining-budget
+1742568233732:update --id 0 --description "rent" --amount 475
+1742568235272:list
+1742568241060:remaining-budget
